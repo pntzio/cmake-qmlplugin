@@ -36,8 +36,8 @@ add_qmlplugin(<name>
 | `SOURCES`    | Should contain all the C++ sources to be compiled with this plugin. |
 | `QMLFILES`   | Should contain all QML files which should be copied to the binary directory and eventually installed to `[QT_INSTALL_QML]` directory. |
 | `BINARY_DIR` | Used to specify the output directory when building. This should be the directory which is a parent to `org/mycompany/components` in order for `qmlplugindump` to work properly. If not explicitly set, it will default to `${CMAKE_CURRENT_BINARY_DIR}`. |
-| `NO_AUTORCC` | Turn of automatic RCC |
-| `NO_AUTOMOC` | Turn of automatic MOC |
+| `NO_AUTORCC` | Turn off automatic RCC |
+| `NO_AUTOMOC` | Turn off automatic MOC |
 
 ### Example
 ```cmake
