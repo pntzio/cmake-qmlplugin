@@ -10,6 +10,7 @@ By using `add_qmlplugin( ... )`, the build system will
 * `qmake` must be in `PATH`
 * You must have a `org/mycompany/component` structure in your project in order for `qmlplugindump` to work.
     * Alternative, at least make the build output have that structure.
+* There should be a `qmldir` file on the same level as the `CMakeLists.txt` file.
 
 ## Usage
 ### Syntax
