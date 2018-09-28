@@ -28,13 +28,11 @@ add_qmlplugin(<name>
 #### Explanation
 | Argument        | Explanation |
 | ------------ |:--------------|
-| `URI`        | URI used by the plugin, which is also used as a directory when installing the plugin. For example `org.mycompany.components` will be installed to 
-`[QT_INSTALL_QML]/org/mycompany/components`. |
-| `VERSION`    | Denotes the version of the plugin.      |
-| `SOURCES`    | Should contain all the C++ sources to be compiled with this plugin      |
+| `URI`        | URI used by the plugin, which is also used as a directory when installing the plugin. For example `org.mycompany.components` will be installed to `[QT_INSTALL_QML]/org/mycompany/components`. |
+| `VERSION`    | Denotes the version of the plugin. |
+| `SOURCES`    | Should contain all the C++ sources to be compiled with this plugin. |
 | `QMLFILES`   | Should contain all QML files which should be copied to the binary directory and eventually installed to `[QT_INSTALL_QML]` directory. |
-| `BINARY_DIR` | Used to specify the output directory when building. This should be the directory which is a parent to `org/mycompany/components` in order for `qmlplugindump` to work properly. 
-If not explicitly set, it will default to `${CMAKE_CURRENT_BINARY_DIR}` |
+| `BINARY_DIR` | Used to specify the output directory when building. This should be the directory which is a parent to `org/mycompany/components` in order for `qmlplugindump` to work properly. If not explicitly set, it will default to `${CMAKE_CURRENT_BINARY_DIR}`. |
 
 ### Example
 ```cmake
