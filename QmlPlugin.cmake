@@ -33,17 +33,6 @@ function(add_qmlplugin TARGET)
         return()
     endif()
 
-    if(QMLPLUGIN_NO_AUTORCC)
-        set(CMAKE_AUTORCC OFF)
-    else()
-        set(CMAKE_AUTORCC ON)
-    endif()
-    if(QMLPLUGIN_NO_AUTOMOC)
-        set(CMAKE_AUTOMOC OFF)
-    else()
-        set(CMAKE_AUTOMOC ON)
-    endif()
-
     ### Depending on project hierarchy, one might want to specify a custom binary dir
     if(NOT QMLPLUGIN_BINARY_DIR)
         set(QMLPLUGIN_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
@@ -56,6 +45,18 @@ function(add_qmlplugin TARGET)
 
     ### QML files, just to make them visible in the editor
     add_custom_target(qmlfiles SOURCES ${QMLPLUGIN_QMLFILES})
+
+    ### No AutoMOC or AutoRCC
+    if(QMLPLUGIN_NO_AUTORCC)
+        set_target_properties(${TARGET} PROPERTIES AUTOMOC OFF)
+    else()
+        set_target_properties(${TARGET} PROPERTIES AUTOMOC ON)
+    endif()
+    if(QMLPLUGIN_NO_AUTOMOC)
+        set_target_properties(${TARGET} PROPERTIES AUTOMOC OFF)
+    else()
+        set_target_properties(${TARGET} PROPERTIES AUTOMOC ON)
+    endif()
 
     ### Find location of qmlplugindump (stored in QMLPLUGINDUMP_BIN)
     FindQmlPluginDump()
