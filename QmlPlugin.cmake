@@ -35,7 +35,7 @@ function(add_qmlplugin TARGET)
 
     ### Depending on project hierarchy, one might want to specify a custom binary dir
     if(NOT QMLPLUGIN_BINARY_DIR)
-        set(QMLPLUGIN_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+        set(QMLPLUGIN_BINARY_DIR ${CMAKE_BINARY_DIR})
     endif()
 
     ### Source files
@@ -76,12 +76,14 @@ function(add_qmlplugin TARGET)
     )
 
     ### Copy QML-files from project source to binary dir
-    add_custom_command(
-        TARGET ${TARGET}
-        POST_BUILD
-        COMMAND ${COPY_QMLFILES_COMMAND}
-        COMMENT "Copying QML files to binary directory"
-    )
+    if(QMLPLUGIN_QMLFILES)
+        add_custom_command(
+            TARGET ${TARGET}
+            POST_BUILD
+            COMMAND ${COPY_QMLFILES_COMMAND}
+            COMMENT "Copying QML files to binary directory"
+        )
+    endif()
 
     ### Create command to generate plugin.qmltypes after build
     add_custom_command(
