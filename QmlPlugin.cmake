@@ -44,7 +44,7 @@ function(add_qmlplugin TARGET)
     )
 
     ### QML files, just to make them visible in the editor
-    add_custom_target(qmlfiles SOURCES ${QMLPLUGIN_QMLFILES})
+    add_custom_target("${TARGET}-qmlfiles" SOURCES ${QMLPLUGIN_QMLFILES})
 
     ### No AutoMOC or AutoRCC
     if(QMLPLUGIN_NO_AUTORCC)
