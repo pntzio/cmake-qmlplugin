@@ -86,13 +86,16 @@ function(add_qmlplugin TARGET)
     endif()
 
     ### Create command to generate plugin.qmltypes after build
-    add_custom_command(
-        TARGET ${TARGET}
-        POST_BUILD
-        COMMAND ${GENERATE_QMLTYPES_COMMAND}
-        COMMENT "Generating plugin.qmltypes"
-    )
-
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        message("${GENERATE_QMLTYPES_COMMAND}")
+        add_custom_command(
+            TARGET ${TARGET}
+            POST_BUILD
+            COMMAND ${GENERATE_QMLTYPES_COMMAND}
+            COMMENT "Generating plugin.qmltypes"
+        )
+    endif()
+    
     string(REPLACE "." "/" QMLPLUGIN_INSTALL_URI ${QMLPLUGIN_URI})
 
     ### Install library
@@ -103,8 +106,15 @@ function(add_qmlplugin TARGET)
     ### Install aditional files
     install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/qmldir
-        ${CMAKE_CURRENT_BINARY_DIR}/plugin.qmltypes
         ${QMLPLUGIN_QMLFILES}
         DESTINATION ${QT_INSTALL_QML}/${QMLPLUGIN_INSTALL_URI}
     )
+
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        install(FILES
+            ${CMAKE_CURRENT_BINARY_DIR}/plugin.qmltypes
+            DESTINATION ${QT_INSTALL_QML}/${QMLPLUGIN_INSTALL_URI}
+        )
+    endif()
+    
 endfunction()
